@@ -1,5 +1,7 @@
-import React,{useState} from "react";
+import React,{useStates} from "react";
 function App(){
+  const [images, setImage] = useState([]);
+  const [isLoding, setIsLoding] = useState(true)
   return(
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <img src="https://images.unsplash.com/photo-1710938310939-454ff59ec78a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIzfHx8ZW58MHx8fHx8" alt="w-full" />
