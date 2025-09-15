@@ -1,3 +1,4 @@
+import React,{useState} from "react";
 function App(){
   return(
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -19,6 +20,14 @@ function App(){
         <span className="inline-block bg-gray-200 rounded-full px-4 py-1 text-sm fon-semibold text-gray-700
         mr-2">
           #tag1
+        </span>
+          <span className="inline-block bg-gray-200 rounded-full px-4 py-1 text-sm fon-semibold text-gray-700
+        mr-2">
+          #tag2
+        </span>
+          <span className="inline-block bg-gray-200 rounded-full px-4 py-1 text-sm fon-semibold text-gray-700
+        mr-2">
+          #tag3
         </span>
 
       </div>
