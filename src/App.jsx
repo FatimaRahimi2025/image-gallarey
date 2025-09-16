@@ -1,54 +1,94 @@
+// import { useEffect, useState } from "react";
+// import Imagescard from "./Compponents/Imagescard";
+
+// function App() {
+//   const [images, setImages] = useState([]);
+//   const [isLoading, setIsLoading] = useState(true);
+//   const [term, setTerm] = useState('');
+
+//   useEffect(() => {
+//     const API_KEY = import.meta.env.VITE_PIXABAY_API_KEY;
+
+//     fetch(`https://pixabay.com/api/?key=${API_KEY}&q=${term}&image_type=photo&pretty=true`)
+//       .then(res => res.json())
+//       .then(data => {
+//         console.log("Pixabay data:", data);
+//         setImages(data.hits);
+      
+//       })
+//       .catch((err) => console.log(err));
+//   }, [term]);
+
+//   return(
+//     <div className="Contianer mx-auto"> 
+//     <div className="grid grid-cols-3 gap-4">
+//       {
+//         images.map((image) => (
+//            <Imagescard key={image.id} image={image}/>
+//         ))
+//       }
+
+//     </div>
+
+//     </div>
+   
+//   )
+// }
+
+// export default App;
+
 import { useEffect, useState } from "react";
-function App(){
-  const [images, setImage] = useState([]);
-  const [isLoding, setIsLoding] = useState(true)
-  const [term, setTerm] = useState("flowers")
+import Imagescard from "./Compponents/Imagescard";
+
+function App() {
+  const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [term, setTerm] = useState("flowers"); // مقدار اولیه برای تست
 
   useEffect(() => {
+    if (!term) return; // اگر term خالی بود، API صدا زده نشه
     const API_KEY = import.meta.env.VITE_PIXABAY_API_KEY;
+    setIsLoading(true);
 
     fetch(`https://pixabay.com/api/?key=${API_KEY}&q=${term}&image_type=photo&pretty=true`)
-    .then(res => res.json())
-    .then(data => {console.log("Pixabay data:", data);
-      setImage(data.this);
-      setIsLoding(flase);
-    })
-    .catch(err => console.error("Fetch error:", err));
-    
-  },[term])
-  return(
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
-      <img src="https://images.unsplash.com/photo-1710938310939-454ff59ec78a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIzfHx8ZW58MHx8fHx8" alt="w-full" />
-      <div className="px-6 py-4">
-        <div className="font-bold text-purple-500 text-xl mb-2">
-          photo created by Fatima Rahimi
-        </div>
-        <ul>
-          <li><strong>Views:</strong>
-          4000</li>
-          <li><strong>Downloads:</strong>
-          300</li>
-          <li><strong>Likes:</strong>
-          200</li>
-        </ul>
-      </div>
-      <div className="px-6 py-4">
-        <span className="inline-block bg-gray-200 rounded-full px-4 py-1 text-sm fon-semibold text-gray-700
-        mr-2">
-          #tag1
-        </span>
-          <span className="inline-block bg-gray-200 rounded-full px-4 py-1 text-sm fon-semibold text-gray-700
-        mr-2">
-          #tag2
-        </span>
-          <span className="inline-block bg-gray-200 rounded-full px-4 py-1 text-sm fon-semibold text-gray-700
-        mr-2">
-          #tag3
-        </span>
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Pixabay data:", data.hits);
+        setImages(data.hits);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        setIsLoading(false);
+      });
+  }, [term]);
 
+  return (
+    <div className="container mx-auto p-4">
+      {/* Input برای جستجوی داینامیک */}
+      <div className="mb-6">
+        <input
+          type="text"
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
+          placeholder="Search for images..."
+          className="border p-2 w-full rounded"
+        />
       </div>
+
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : images.length > 0 ? (
+        <div className="grid grid-cols-3 gap-4">
+          {images.map((image) => (
+            <Imagescard key={image.id} image={image} />
+          ))}
+        </div>
+      ) : (
+        <p>No images found.</p>
+      )}
     </div>
-  )
+  );
 }
 
 export default App;
