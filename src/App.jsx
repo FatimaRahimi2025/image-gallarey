@@ -1,7 +1,21 @@
-import React,{useStates} from "react";
+import { useEffect, useState } from "react";
 function App(){
   const [images, setImage] = useState([]);
   const [isLoding, setIsLoding] = useState(true)
+  const [term, setTerm] = useState("flowers")
+
+  useEffect(() => {
+    const API_KEY = import.meta.env.VITE_PIXABAY_API_KEY;
+
+    fetch(`https://pixabay.com/api/?key=${API_KEY}&q=${term}&image_type=photo&pretty=true`)
+    .then(res => res.json())
+    .then(data => {console.log("Pixabay data:", data);
+      setImage(data.this);
+      setIsLoding(flase);
+    })
+    .catch(err => console.error("Fetch error:", err));
+    
+  },[term])
   return(
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <img src="https://images.unsplash.com/photo-1710938310939-454ff59ec78a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIzfHx8ZW58MHx8fHx8" alt="w-full" />
