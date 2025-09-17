@@ -39,6 +39,8 @@
 
 import { useEffect, useState } from "react";
 import Imagescard from "./Compponents/Imagescard";
+import ImagesSearch from "./Compponents/ImageSreach";
+
 
 function App() {
   const [images, setImages] = useState([]);
@@ -63,6 +65,7 @@ function App() {
 
   return(
     <div className="Contianer mx-auto">
+      <ImagesSearch  searchText={(text) => setTerm(text)}/>
       {isLoading ? (
         <h1 className="text-6xl text-center mx-auto mt-32">Loading...</h1>
       ):  images.length > 0 ? (

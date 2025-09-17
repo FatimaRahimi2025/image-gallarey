@@ -37,7 +37,6 @@
 // }
 // export default Imagescard;
 
-
 const Imagescard = ({ image }) => {
   const tage = image.tags.split(',')
   return (
