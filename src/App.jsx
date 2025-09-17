@@ -1,41 +1,3 @@
-// import { useEffect, useState } from "react";
-// import Imagescard from "./Compponents/Imagescard";
-
-// function App() {
-//   const [images, setImages] = useState([]);
-//   const [isLoading, setIsLoading] = useState(true);
-//   const [term, setTerm] = useState('');
-
-//   useEffect(() => {
-//     const API_KEY = import.meta.env.VITE_PIXABAY_API_KEY;
-
-//     fetch(`https://pixabay.com/api/?key=${API_KEY}&q=${term}&image_type=photo&pretty=true`)
-//       .then(res => res.json())
-//       .then(data => {
-//         console.log("Pixabay data:", data);
-//         setImages(data.hits);
-      
-//       })
-//       .catch((err) => console.log(err));
-//   }, [term]);
-
-//   return(
-//     <div className="Contianer mx-auto"> 
-//     <div className="grid grid-cols-3 gap-4">
-//       {
-//         images.map((image) => (
-//            <Imagescard key={image.id} image={image}/>
-//         ))
-//       }
-
-//     </div>
-
-//     </div>
-   
-//   )
-// }
-
-// export default App;
 
 import { useEffect, useState } from "react";
 import Imagescard from "./Compponents/Imagescard";
@@ -45,7 +7,7 @@ import ImagesSearch from "./Compponents/ImageSreach";
 function App() {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [term, setTerm] = useState(); // مقدار اولیه برای تست
+  const [term, setTerm] = useState(); 
 
   useEffect(() => {
   const API_KEY = import.meta.env.VITE_PIXABAY_API_KEY;
