@@ -39,6 +39,7 @@
 
 
 const Imagescard = ({ image }) => {
+  const tage = image.tags.split(',')
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <img src={image.webformatURL} alt={image.tags} className="w-full" />
@@ -53,12 +54,12 @@ const Imagescard = ({ image }) => {
         </ul>
       </div>
       <div className="px-6 py-4">
-        {image.tags.split(",").map((tag, i) => (
+        {tage.map((tag, index) => (
           <span
-            key={i}
+            key={index}
             className="inline-block bg-gray-200 rounded-full px-4 py-1 text-sm font-semibold text-gray-700 mr-2"
           >
-            #{tag.trim()}
+            #{tag}
           </span>
         ))}
       </div>
