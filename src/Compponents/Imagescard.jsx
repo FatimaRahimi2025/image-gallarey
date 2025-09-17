@@ -6,7 +6,7 @@ const Imagescard = ({ image }) => {
       <img src={image.webformatURL} alt={image.tags} className="w-full" />
       <div className="px-6 py-4">
         <div className="font-bold text-purple-500 text-xl mb-2">
-          Photo by {image.user}
+          Photo create by {image.user}
         </div>
         <ul>
           <li><strong>Views:</strong> {image.views}</li>
@@ -29,3 +29,5 @@ const Imagescard = ({ image }) => {
 };
 
 export default Imagescard;
+
+
