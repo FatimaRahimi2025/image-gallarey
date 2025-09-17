@@ -22,7 +22,7 @@ const Imagescard = ({ image }) => {
           >
             #{tag}
           </span>
-        ))}
+        ))};
       </div>
     </div>
   );

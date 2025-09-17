@@ -24,6 +24,6 @@ const ImagesSearch = ({searchText}) => {
             </form>
         </div>
     )
-}
+};
 
 export default ImagesSearch;
